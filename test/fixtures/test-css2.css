@@ -1,0 +1,4 @@
+.somediv:hover {
+	opacity: 0;
+	display: flex;
+}
