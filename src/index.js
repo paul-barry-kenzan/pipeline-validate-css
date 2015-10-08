@@ -28,7 +28,16 @@ function validatePipeline(options) {
   function validateCSS() {
     return lazypipe()
       .pipe(plugins.csslint)
-      .pipe(plugins.csslint.reporter);
+      .pipe(plugins.csslint.reporter, customReporter);
+  }
+
+  function customReporter(file) {
+
+    plugins.util.log(plugins.util.colors.red('Errors in: ' + file.path));
+    file.csslint.results.forEach(function(result) {
+      plugins.util.log(plugins.util.colors.grey('line ' + result.error.line + ':' + result.error.message));
+    });
+    plugins.util.log(plugins.util.colors.red(' -- End Errors -- '));
   }
 
 }
