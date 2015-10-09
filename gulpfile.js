@@ -3,11 +3,13 @@
 var gulp = require('gulp');
 var validateCssPipeline = require('./src/index.js')();
 var validatePipeline = require('pipeline-validate-js')();
-var del = require('del')
+var del = require('del');
+var plugins = require('gulp-load-plugins')({lazy: true});
+
 
 var config = {
   files: [
-   'src/**/*.js',
+   'src/*.js',
   ],
 
   cssFiles: [

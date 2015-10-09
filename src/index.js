@@ -3,9 +3,9 @@
 'use strict';
 
 var handyman = require('pipeline-handyman');
-// var gulp = require('gulp');
 var lazypipe = require('lazypipe');
 var plugins = require('gulp-load-plugins')({lazy: true});
+var gulpFilter = require('gulp-filter');
 
 var config = {
   output: 'dist/'
@@ -28,16 +28,17 @@ function validatePipeline(options) {
   function validateCSS() {
     return lazypipe()
       .pipe(plugins.csslint)
+      .pipe(gulpFilter, '*.css', {matchBase: true})
       .pipe(plugins.csslint.reporter, customReporter);
   }
 
   function customReporter(file) {
-
-    plugins.util.log(plugins.util.colors.red('Errors in: ' + file.path));
+    var color = plugins.util.colors;
+    plugins.util.log(color.red('Errors in: ' + file.path));
     file.csslint.results.forEach(function(result) {
-      plugins.util.log(plugins.util.colors.grey('line ' + result.error.line + ':' + result.error.message));
+      plugins.util.log(color.grey('line ' + result.error.line + ':' + result.error.message));
     });
-    plugins.util.log(plugins.util.colors.red(' -- End Errors -- '));
+    plugins.util.log(color.red(' -- End Errors -- '));
   }
 
 }
