@@ -21,7 +21,7 @@ gulp.task('validate', function() {
     .pipe(validatePipeline.validateJS());
 });
 
-gulp.task('default', ['clean', 'validate'] , function() {
+gulp.task('default', ['validate'] , function() {
   return gulp
     .src(config.cssFiles)
     .pipe(validateCssPipeline.validateCSS());
