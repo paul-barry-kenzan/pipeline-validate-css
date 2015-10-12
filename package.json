@@ -38,7 +38,7 @@
     "npm": ">=1.0.20"
   },
   "analyze": true,
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "chai": "3.3.0",
     "del": "2.0.2",

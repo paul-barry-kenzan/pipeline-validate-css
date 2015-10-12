@@ -38,3 +38,5 @@ gulp.task('default', function() {
 This pipeline returns an object. This object receives a stream with the CSS files to validate. You can call the _validateCSS_ method to run the validation. The method will report if any issues were found during the process . If no issues are present, it will return the stream.
 
 ## LICENSE
+
+  + MIT
