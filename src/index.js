@@ -2,22 +2,13 @@
 
 'use strict';
 
-var handyman = require('pipeline-handyman');
 var lazypipe = require('lazypipe');
 var plugins = require('gulp-load-plugins')({lazy: true});
 var gulpFilter = require('gulp-filter');
 
-var config = {
-  output: 'dist/'
-};
-
 module.exports = validatePipeline;
 
-function validatePipeline(options) {
-
-  if (config) {
-    config = handyman.updateConf(config, options);
-  }
+function validatePipeline() {
 
   var pipeline = {
     validateCSS: validateCSS()
