@@ -14,13 +14,20 @@ function validatePipeline() {
     validateCSS: validateCSS()
   };
 
+  var cssFilter = gulpFilter('*.css', {matchBase: true, restore: true});
+
   return pipeline;
 
   function validateCSS() {
     return lazypipe()
+      .pipe(function() {
+        return cssFilter;
+      })
       .pipe(plugins.csslint)
-      .pipe(gulpFilter, '*.css', {matchBase: true})
-      .pipe(plugins.csslint.reporter, customReporter);
+      .pipe(plugins.csslint.reporter, customReporter)
+      .pipe(function() {
+        return cssFilter.restore;
+      });
   }
 
   function customReporter(file) {
