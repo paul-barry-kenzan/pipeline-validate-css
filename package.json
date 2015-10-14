@@ -40,19 +40,19 @@
   "analyze": true,
   "license": "MIT",
   "dependencies": {
-    "chai": "3.3.0",
     "del": "2.0.2",
     "gulp": "3.9.0",
     "gulp-csslint": "0.2.0",
     "gulp-filter": "3.0.1",
     "gulp-load-plugins": "0.10.0",
     "gulp-util": "3.0.6",
-    "lazypipe": "1.0.1",
-    "pipeline-validate-js": "git+ssh://git@github.com/kenzanmedia/pipeline-validate-js.git#55c0ec3a51799e83d4748ffbb700687fb818b8f5"
+    "lazypipe": "1.0.1"
   },
   "devDependencies": {
+    "chai": "3.3.0",
     "isstream": "0.1.2",
     "path": "0.12.7",
+    "pipeline-validate-js": "git+ssh://git@github.com/kenzanmedia/pipeline-validate-js.git#55c0ec3a51799e83d4748ffbb700687fb818b8f5",
     "stream-assert": "2.0.3"
   }
 }
