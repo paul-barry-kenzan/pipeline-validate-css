@@ -38,7 +38,7 @@
     "npm": ">=1.0.20"
   },
   "analyze": true,
-  "license": "MIT",
+  "license": "Apache-2.0",
   "dependencies": {
     "del": "2.0.2",
     "gulp": "3.9.0",
