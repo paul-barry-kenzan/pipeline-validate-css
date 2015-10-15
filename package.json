@@ -1,0 +1,58 @@
+{
+  "name": "pipeline-validate-css",
+  "version": "0.1.0-SNAPSHOT",
+  "description": "Gulp pipeline to validate CSS files",
+  "author": "Juan P. Osorio <jposorio@kenzan.com> (https://github.com/jpoo90)",
+  "contributors": [
+    {
+      "name": "Owen Buckley",
+      "email": "obuckley@kenzan.com"
+    },
+    {
+      "name": "Chris Sharon",
+      "email": "csharon@kenzan.com"
+    }
+  ],
+  "scripts": {
+    "test": "mocha test/index.spec.js -w"
+  },
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com:kenzanmedia/pipeline-validate-css.git"
+  },
+  "keywords": [
+    "Gulp",
+    "Tools",
+    "Keystone",
+    "Pipeline",
+    "CSS"
+  ],
+  "preferGlobal": false,
+  "private": false,
+  "publishConfig": {
+    "registry": ""
+  },
+  "engines": {
+    "node": ">=0.10.3",
+    "npm": ">=1.0.20"
+  },
+  "analyze": true,
+  "license": "Apache-2.0",
+  "dependencies": {
+    "del": "2.0.2",
+    "gulp": "3.9.0",
+    "gulp-csslint": "0.2.0",
+    "gulp-filter": "3.0.1",
+    "gulp-load-plugins": "0.10.0",
+    "gulp-util": "3.0.6",
+    "lazypipe": "1.0.1"
+  },
+  "devDependencies": {
+    "chai": "3.3.0",
+    "isstream": "0.1.2",
+    "path": "0.12.7",
+    "pipeline-validate-js": "git+ssh://git@github.com/kenzanmedia/pipeline-validate-js.git#55c0ec3a51799e83d4748ffbb700687fb818b8f5",
+    "stream-assert": "2.0.3"
+  }
+}
