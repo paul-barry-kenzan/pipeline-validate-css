@@ -52,7 +52,7 @@
     "chai": "3.3.0",
     "isstream": "0.1.2",
     "path": "0.12.7",
-    "pipeline-validate-js": "git+ssh://git@github.com/kenzanmedia/pipeline-validate-js.git#55c0ec3a51799e83d4748ffbb700687fb818b8f5",
+    "pipeline-validate-js": "git+ssh://git@github.com/kenzanmedia/pipeline-validate-js.git#0.1.0",
     "stream-assert": "2.0.3"
   }
 }
