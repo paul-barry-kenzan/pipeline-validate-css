@@ -2,8 +2,9 @@
 
 'use strict';
 
+var csslint = require('gulp-csslint');
 var lazypipe = require('lazypipe');
-var plugins = require('gulp-load-plugins')({lazy: true});
+var util = require('gulp-util');
 var gulpFilter = require('gulp-filter');
 
 module.exports = validatePipeline;
@@ -32,12 +33,14 @@ function validatePipeline() {
   }
 
   function customReporter(file) {
-    var color = plugins.util.colors;
-    plugins.util.log(color.red('Errors in: ' + file.path));
+    var color = util.colors;
+
+    util.log(color.red('Errors in: ' + file.path));
     file.csslint.results.forEach(function(result) {
-      plugins.util.log(color.grey('line ' + result.error.line + ':' + result.error.message));
+      util.log(color.grey('line ' + result.error.line + ':' + result.error.message));
     });
-    plugins.util.log(color.red(' -- End Errors -- '));
+
+    util.log(color.red(' -- End Errors -- '));
   }
 
 }

@@ -1,25 +1,37 @@
-/*global require */
 'use strict';
 
-var validatePipeline = require('../');
+var expect = require('chai').expect;
+var validatePipeline = require('../src/index.js');
 var gulp = require('gulp');
 var path = require('path');
-var should = require('chai').should();
 var isStream = require('isstream');
 
 var fixtures = function (glob) { return path.join(__dirname, 'fixtures', glob); };
 
 describe('pipeline-validate-css', function() {
 
-  var testPath = path.join(__dirname, 'dist');
-
   it('Should return the stream after validation', function (done) {
     var stream = gulp
       .src(fixtures('*'))
       .pipe(validatePipeline().validateCSS());
 
-      isStream(stream).should.equal(true);
-      done();
+    expect(isStream(stream)).to.equal(true);
+    done();
+  });
+
+  it('Should return the stream with custom reporting', function (done) {
+    var stream = gulp
+      .src(fixtures('*'))
+      .pipe(validatePipeline().validateCSS({
+        csslint: {
+          reporter: function() {
+            return true;
+          }
+        }
+      }));
+
+    expect(isStream(stream)).to.equal(true);
+    done();
   });
 
 });
