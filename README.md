@@ -32,11 +32,14 @@ gulp.task('validate:css', function() {
 
 ## Options
 
-  + You can include your custom CSS rules adding a `.csslintrc` file in the root of your project. Using this method will overwrite the default rules predefined in this pipeline.
+  + You can include your custom CSS rules adding a `.csslintrc` file in the root of your project. Using this method 
+  will overwrite the default rules predefined in this pipeline.
 
 ## Results
 
-This pipeline returns an object. This object receives a stream with the CSS files to validate. You can call the _validateCSS_ method to run the validation. The method will report if any issues were found during the process . If no issues are present, it will return the stream.
+This pipeline returns an object. This object receives a stream with the CSS files to validate. You can call the 
+_validateCSS_ method to run the validation. The method will report if any issues were found during the process. 
+If no issues are present, it will return the stream.
 
 ## LICENSE
 
