@@ -6,7 +6,7 @@ var validatePipeline = require('pipeline-validate-js')();
 
 var config = {
   files: [
-   'src/*.js',
+   'src/*.js'
   ],
 
   cssFiles: [
