@@ -1,20 +1,21 @@
-# Pipeline-validate-css
+# pipeline-validate-css
 
 ## Information
 
 | Package       | Description   | Version|
 | ------------- |:-------------:| -----:|
-| Pipeline-validate-css| This pipeline validates CSS files using CSS Lint| 0.1.0 |
+| pipeline-validate-css| This pipeline validates CSS files using CSS Lint| 0.1.0 |
 
 # Overview
 
+A pipeline for validating CSS files using CSS Lint.
 
-_repo_: `https://github.com/kenzanmedia/pipeline-validate-css/`
-
-_jenkins_: `TODO`
+**NOTE: as this project is still pre 1.0.0, it is subject to possible backwards incompatible changes as it matures.
+Also, as part of a repo migration, version 0.1.0 will not install, so please use any of the newer versions**
 
 ## Install
-`npm install git+ssh:git@github.com:kenzanmedia/pipeline-validate-css.git`
+
+`npm install git://github.com/kenzanlabs/pipeline-validate-css.git --save-dev`
 
 ## Usage
 ```javascript
