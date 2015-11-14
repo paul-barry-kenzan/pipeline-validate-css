@@ -1,6 +1,6 @@
 {
   "name": "pipeline-validate-css",
-  "version": "0.2.0",
+  "version": "0.3.0-SNAPSHOT",
   "description": "Gulp pipeline to validate CSS files",
   "author": "Juan P. Osorio <jposorio@kenzan.com> (https://github.com/jpoo90)",
   "contributors": [
