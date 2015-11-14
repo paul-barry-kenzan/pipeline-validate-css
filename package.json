@@ -19,13 +19,14 @@
   "main": "src/index.js",
   "repository": {
     "type": "git",
-    "url": "ssh://git@github.com:kenzanmedia/pipeline-validate-css.git"
+    "url": "https://github.com/kenzanlabs/pipeline-validate-css"
   },
   "keywords": [
     "Gulp",
     "Tools",
     "Keystone",
     "Pipeline",
+    "CSS Lint",
     "CSS"
   ],
   "preferGlobal": false,
@@ -52,7 +53,7 @@
     "chai": "3.3.0",
     "isstream": "0.1.2",
     "path": "0.12.7",
-    "pipeline-validate-js": "git+ssh://git@github.com/kenzanmedia/pipeline-validate-js.git#0.1.0",
+    "pipeline-validate-js": "git+ssh://git@github.com/kenzanlabs/pipeline-validate-js.git#0.2.0",
     "stream-assert": "2.0.3"
   }
 }
