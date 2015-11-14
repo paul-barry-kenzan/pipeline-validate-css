@@ -25,6 +25,7 @@ function validatePipeline() {
       })
       .pipe(plugins.csslint)
       .pipe(plugins.csslint.reporter, customReporter)
+      .pipe(plugins.csslint.reporter, 'fail')
       .pipe(function() {
         return cssFilter.restore;
       });
