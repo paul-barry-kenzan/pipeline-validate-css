@@ -50,7 +50,6 @@
   "devDependencies": {
     "chai": "3.4.1",
     "isstream": "0.1.2",
-    "path": "0.12.7",
     "pipeline-test-node": "git+ssh://git@github.com/kenzanlabs/pipeline-test-node.git#0.3.0",
     "pipeline-validate-js": "git+ssh://git@github.com/kenzanlabs/pipeline-validate-js.git#0.2.0",
     "stream-assert": "2.0.3"

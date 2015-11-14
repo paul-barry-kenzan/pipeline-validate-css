@@ -6,16 +6,14 @@ var validateCssPipeline = require('./src/index.js')();
 var validateJsPipeline = require('pipeline-validate-js')();
 
 var config = {
+  cssFiles: [
+    'test/**/*.css'
+  ],
   jsFiles: [
     '*.js',
     'src/*.js',
     'test/*.js'
-  ],
-
-  cssFiles: [
-   'test/**/*.css'
   ]
-
 };
 
 gulp.task('validate', function() {

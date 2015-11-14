@@ -1,27 +1,27 @@
 'use strict';
 
 var expect = require('chai').expect;
-var validatePipeline = require('../src/index.js');
 var gulp = require('gulp');
-var path = require('path');
 var isStream = require('isstream');
 
-var fixtures = function (glob) { return path.join(__dirname, 'fixtures', glob); };
+var successFixtures = ['./test/fixtures/test-css1.css', './test/fixtures/test-css2.css'];
 
 describe('pipeline-validate-css', function() {
 
   it('Should return the stream after validation', function (done) {
+    var validatePipeline = require('../src/index.js');
     var stream = gulp
-      .src(fixtures('*'))
+      .src(successFixtures)
       .pipe(validatePipeline().validateCSS());
 
     expect(isStream(stream)).to.equal(true);
     done();
   });
 
-  it('Should return the stream with custom reporting', function (done) {
+  it('Should return the stream with custom reporting success', function (done) {
+    var validatePipeline = require('../src/index.js');
     var stream = gulp
-      .src(fixtures('*'))
+      .src(successFixtures)
       .pipe(validatePipeline().validateCSS({
         csslint: {
           reporter: function() {
@@ -29,6 +29,16 @@ describe('pipeline-validate-css', function() {
           }
         }
       }));
+
+    expect(isStream(stream)).to.equal(true);
+    done();
+  });
+
+  it('Should return the stream with custom reporting failed', function (done) {
+    var validatePipeline = require('../src/index.js');
+    var stream = gulp
+      .src(['./test/fixtures/test-css3.css'])
+      .pipe(validatePipeline().validateCSS());
 
     expect(isStream(stream)).to.equal(true);
     done();

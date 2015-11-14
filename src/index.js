@@ -24,9 +24,9 @@ function validatePipeline() {
       .pipe(function() {
         return cssFilter;
       })
-      .pipe(plugins.csslint)
-      .pipe(plugins.csslint.reporter, customReporter)
-      .pipe(plugins.csslint.reporter, 'fail')
+      .pipe(csslint)
+      .pipe(csslint.reporter, 'fail')
+      .pipe(csslint.reporter, customReporter)
       .pipe(function() {
         return cssFilter.restore;
       });
@@ -36,6 +36,7 @@ function validatePipeline() {
     var color = util.colors;
 
     util.log(color.red('Errors in: ' + file.path));
+
     file.csslint.results.forEach(function(result) {
       util.log(color.grey('line ' + result.error.line + ':' + result.error.message));
     });
