@@ -4,7 +4,7 @@
 
 | Package       | Description   | Version|
 | ------------- |:-------------:| -----:|
-| pipeline-validate-css| This pipeline validates CSS files using CSS Lint| 0.2.1 |
+| pipeline-validate-css| This pipeline validates CSS files using CSS Lint| 0.3.0 |
 
 # Overview
 
