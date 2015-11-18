@@ -15,7 +15,7 @@ Also, as part of a repo migration, version 0.1.0 will not install, so please use
 
 ## Install
 
-`npm install git://github.com/kenzanlabs/pipeline-validate-css.git --save-dev`
+`npm install pipeline-validate-css --save-dev`
 
 ## Usage
 ```javascript
