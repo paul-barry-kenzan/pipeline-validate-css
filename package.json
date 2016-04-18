@@ -42,7 +42,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "del": "2.0.2",
-    "gulp": "3.9.0",
+    "gulp": "3.9.1",
     "gulp-csslint": "0.2.0",
     "gulp-filter": "3.0.1",
     "gulp-load-plugins": "0.10.0",
@@ -51,9 +51,13 @@
   },
   "devDependencies": {
     "chai": "3.3.0",
+    "gulp-util": "3.0.6",
     "isstream": "0.1.2",
     "path": "0.12.7",
-    "pipeline-validate-js": "^0.3.0",
+    "pipeline-test-node": "0.4.1",
+    "pipeline-validate-js": "1.0.0-rc",
+    "sinon": "1.17.3",
+    "sinon-chai": "2.8.0",
     "stream-assert": "2.0.3"
   }
 }
