@@ -22,7 +22,7 @@ describe('pipeline-validate-css', function() {
     it('Should return the stream after validation', function (done) {
       stream = gulp
 	      .src(fixtures('test-css2.css'))
-	      .pipe(validatePipeline().validateCSS());
+	      .pipe(validatePipeline.validateCSS());
 
       isStream(stream).should.equal(true);
       done();
@@ -44,30 +44,30 @@ describe('check inner functions spies', function() {
   });
 
   it('should be called once validateCSS is called', function() {
-    validatePipeline().validateCSS();
+    validatePipeline.validateCSS();
     spy.should.have.been.calledWith('Validating CSS files.');
   });
 
   it('should be called once customReporter is called', function() {
-    validatePipeline().validateCSS();
+    validatePipeline.validateCSS();
     spy.should.have.been.calledWith('Restoring CSS Filter.');
   });
 
- //  it('Invalid file simulation', function () {
- //    var stream = function(){
- //    	gulp
-	//     .src(fixtures('test-css1.css'))
-	//     .pipe(validatePipeline().validateCSS());
-	//   };
+  //  it('Invalid file simulation', function () {
+  //    var stream = function(){
+  //    	gulp
+  //     .src(fixtures('test-css1.css'))
+  //     .pipe(validatePipeline().validateCSS());
+  //   };
 
-	//   stream();
-	//   // setTimeout(function(){
-	//   // 	it('should fail', function(){
-	//   // 			  	spy.should.have.been.calledWith('NO oTHER OPTIONS');
-	//   // 	});
-	//   // 	// spy.should.have.been.calledWith('CUSTOM');
-	//   // 	// true.should.equal(false)
+  //   stream();
+  //   // setTimeout(function(){
+  //   // 	it('should fail', function(){
+  //   // 			  	spy.should.have.been.calledWith('NO oTHER OPTIONS');
+  //   // 	});
+  //   // 	// spy.should.have.been.calledWith('CUSTOM');
+  //   // 	// true.should.equal(false)
 
-	//   // }, 5);
-	// });
+  //   // }, 5);
+  // });
 });

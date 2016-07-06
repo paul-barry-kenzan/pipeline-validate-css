@@ -20,7 +20,7 @@ Also, as part of a repo migration, version 0.1.0 will not install, so please use
 ## Usage
 ```javascript
 var gulp = require('gulp');
-var validateCssPipeline = require('pipeline-validate-css')();
+var validateCssPipeline = require('pipeline-validate-css');
 
 
 gulp.task('validate:css', function() {

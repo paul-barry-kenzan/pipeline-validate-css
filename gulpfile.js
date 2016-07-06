@@ -13,7 +13,7 @@ var testPipeline = require('pipeline-test-node')({ plugins: {
     }
   }
 }});
-var validateCssPipeline = require('./src/index.js')();
+var validateCssPipeline = require('./src/index.js');
 var validatePipeline = require('pipeline-validate-js');
 
 var config = {
@@ -64,4 +64,5 @@ gulp.task('default', ['validateCSS'], function() {
     }
   }
 });
+
 
