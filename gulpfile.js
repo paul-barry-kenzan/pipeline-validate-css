@@ -1,22 +1,12 @@
 'use strict';
 
-var fs = require('fs');
 var gulp = require('gulp');
 var testPipeline = require('pipeline-test-node');
-var cssConfig = {
-  plugins: {
-    istanbul: {
-      thresholds: {
-        global: 60
-      }
-    }
-  }
-};
-var validateCssPipeline = require('./src/index.js');
-var validatePipeline = require('pipeline-validate-js');
+var validateCSSPipeline = require('./src/index.js');
+var validateJSPipeline = require('pipeline-validate-js');
 
 var config = {
-  files: [
+  jsfiles: [
    'src/*.js',
    'test/**/*.js',
    'test/*.js'
@@ -24,42 +14,35 @@ var config = {
 
   cssFiles: [
    'test/**/*.css'
-  ]
+  ],
+
+  test: {
+    plugins: {
+      istanbul: {
+        thresholds: {
+          global: 60
+        }
+      }
+    }
+  }
 
 };
 
-gulp.task('validate', function() {
+gulp.task('validateJS', function() {
   return gulp
-    .src(config.files)
-    .pipe(validatePipeline.validateJS());
+    .src(config.jsfiles)
+    .pipe(validateJSPipeline.validateJS());
 });
 
-gulp.task('validateCSS', ['validate'], function() {
+gulp.task('validateCSS', ['validateJS'], function() {
   return gulp
     .src(config.cssFiles)
-    .pipe(validateCssPipeline.validateCSS());
+    .pipe(validateCSSPipeline.validateCSS());
 });
 
-gulp.task('default', ['validateCSS'], function() {
-  var dirPath = './reports';
+gulp.task('default', ['validateJS', 'validateCSS'], function() {
 
-  deleteFolderRecursive(dirPath);
   return gulp
-    .src(config.files)
-    .pipe(testPipeline.test(cssConfig));
-
-  function deleteFolderRecursive (dir) {
-    if (fs.existsSync(dir)) {
-      fs.readdirSync(dir).forEach(function(file) {
-        var curPath = dir + '/' + file;
-
-        if (fs.lstatSync(curPath).isDirectory()) { // recurse
-          deleteFolderRecursive(curPath);
-        } else { // delete file
-          fs.unlinkSync(curPath);
-        }
-      });
-      fs.rmdirSync(dir);
-    }
-  }
+    .src(config.jsfiles)
+    .pipe(testPipeline.test(config.test));
 });
