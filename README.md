@@ -4,14 +4,11 @@
 
 | Package       | Description   | Version|
 | ------------- |:-------------:| -----:|
-| pipeline-validate-css| This pipeline validates CSS files using CSS Lint| 0.3.0 |
+| pipeline-validate-css| This pipeline validates CSS files using CSS Lint| 1.0.0 |
 
 # Overview
 
 A pipeline for validating CSS files using CSS Lint.
-
-**NOTE: as this project is still pre 1.0.0, it is subject to possible backwards incompatible changes as it matures.
-Also, as part of a repo migration, version 0.1.0 will not install, so please use any of the newer versions**
 
 ## Install
 
