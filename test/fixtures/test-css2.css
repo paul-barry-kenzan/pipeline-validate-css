@@ -1,5 +1,6 @@
 .somediv:hover {
   background-color: inherit;
   opacity: 0;
-  display: flex;
+  display: flex;;
+}
 }

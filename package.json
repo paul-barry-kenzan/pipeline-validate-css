@@ -42,9 +42,9 @@
   "license": "Apache-2.0",
   "dependencies": {
     "gulp": "3.9.1",
-    "gulp-csslint": "0.2.0",
-    "gulp-filter": "3.0.1",
-    "gulp-util": "3.0.6",
+    "gulp-csslint": "1.0.0",
+    "gulp-filter": "4.0.0",
+    "gulp-util": "3.0.8",
     "lazypipe": "1.0.1",
     "pipeline-handyman": "1.0.0"
   },

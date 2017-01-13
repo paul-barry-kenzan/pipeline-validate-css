@@ -24,9 +24,7 @@ function pipelineFactory() {
       return cssFilter;
     })
     .pipe(cssLint)
-    .pipe(cssLint.reporter)
-    .pipe(cssLint.reporter, customReporter)
-    .pipe(cssLint.failReporter)
+    .pipe(cssLint.formatter, customFormatter)
     .pipe(function() {
       handyman.log('Restoring CSS Filter.');
       return cssFilter.restore;
@@ -35,11 +33,12 @@ function pipelineFactory() {
   return stream();
 }
 
-function customReporter(file) {
+function customFormatter(file) {
   var color = gulpUtil.colors;
 
-  file.csslint.results.forEach(function(result) {
-    handyman.log(color.red('Errors in: ' + file.path));
-    handyman.log(color.grey('line ' + result.error.line + ':' + result.error.message));
+  file.messages.forEach(function(result) {
+    var call = ' line ' + result.line + '   col ' + result.col + '   =>   ' + result.message;
+
+    handyman.log(color.gray(call));
   });
 }
