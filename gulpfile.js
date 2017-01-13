@@ -40,7 +40,7 @@ gulp.task('validateCSS', ['validateJS'], function() {
     .pipe(validateCSSPipeline.validateCSS());
 });
 
-gulp.task('default', ['validateJS', 'validateCSS'], function() {
+gulp.task('build', ['validateJS', 'validateCSS'], function() {
 
   return gulp
     .src(config.jsfiles)
