@@ -28,21 +28,22 @@ var config = {
 
 };
 
-gulp.task('validateJS', function() {
+gulp.task('lint:js', function() {
   return gulp
     .src(config.jsfiles)
     .pipe(validateJSPipeline.validateJS());
 });
 
-gulp.task('validateCSS', ['validateJS'], function() {
+gulp.task('lint:css', function() {
   return gulp
     .src(config.cssFiles)
     .pipe(validateCSSPipeline.validateCSS());
 });
 
-gulp.task('build', ['validateJS', 'validateCSS'], function() {
-
+gulp.task('test', ['lint:js'], function() {
   return gulp
     .src(config.jsfiles)
     .pipe(testPipeline.test(config.test));
 });
+
+gulp.task('build', ['test', 'lint:css']);
