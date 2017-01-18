@@ -11,6 +11,7 @@ var cssLint = require('gulp-csslint');
 var fs = require('fs');
 var path = require('path');
 var rimraf = require('rimraf');
+var handyman = require('pipeline-handyman');
 
 var validateCSSPipeline = require('../src/index');
 
@@ -62,6 +63,14 @@ describe('pipeline-validate-css', function () {
       expect(isStream(validateCSSPipeline.validateCSS())).to.be.true();
     });
 
+    it('should ensure that the custom output formatter is used', function () {
+      var spy = sinon.spy(cssLint, 'formatter');
+
+      validateCSSPipeline.validateCSS();
+
+      expect(spy).to.have.been.calledWith(sinon.match.func);
+    });
+
     describe('validateCSS default usage', function () {
 
       xit('should utilize cssLint with no options', function () {
@@ -72,17 +81,33 @@ describe('pipeline-validate-css', function () {
         expect(spy).to.have.been.calledWith(sinon.match.undefined);
       });
 
-      it('should ensure that the custom output formatter is used', function () {
-        var spy = sinon.spy(cssLint, 'formatter');
-
-        validateCSSPipeline.validateCSS();
-
-        expect(spy).to.have.been.calledWith(sinon.match.func);
-      });
-
     });
 
     describe('validateCSS provided a custom options object', function () {
+
+      var customConfig;
+
+      beforeEach(function () {
+        customConfig = {
+          important: true
+        };
+      });
+
+      it('should merge the provided options with the default options', function () {
+        var spy = sinon.spy(handyman, 'mergeConfig');
+
+        validateCSSPipeline.validateCSS(customConfig);
+
+        expect(spy).to.have.been.calledWith(sinon.match.object, customConfig);
+      });
+
+      xit('should utilize cssLint with the provided options object', function () {
+        var spy = sinon.spy(cssLint);
+
+        validateCSSPipeline.validateCSS();
+
+        expect(spy).to.have.been.calledWith(customConfig);
+      });
 
     });
 

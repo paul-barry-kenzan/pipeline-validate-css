@@ -7,18 +7,23 @@ var lazypipe = require('lazypipe');
 var formatter = require('./formatter');
 
 module.exports = {
-  validateCSS: function () {
-    return pipelineFactory();
+  validateCSS: function (options) {
+    var config = generatePipelineOptions(options);
+
+    return pipelineFactory(config);
   }
 };
 
-function pipelineFactory () {
+function pipelineFactory (config) {
   var stream;
 
-  handyman.log('Validating CSS files.');
   stream = lazypipe()
-    .pipe(cssLint)
+    .pipe(cssLint, config)
     .pipe(cssLint.formatter, formatter);
 
   return stream();
+}
+
+function generatePipelineOptions (options) {
+  return handyman.mergeConfig({}, options);
 }
