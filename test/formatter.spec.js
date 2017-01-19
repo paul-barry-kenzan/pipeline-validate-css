@@ -30,6 +30,8 @@ describe('CSS Lint Formatter Utility', function () {
 
     expect(spy).to.have.callCount(file.messages.length);
 
+    handyman.log.restore();
+
   });
 
 });
