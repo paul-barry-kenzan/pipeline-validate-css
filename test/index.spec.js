@@ -88,6 +88,13 @@ describe('pipeline-validate-css', function () {
         that spying would be possible.
       */
       xit('should utilize cssLint with no options', function () {
+        /*
+          The hope here was to spy on the default method of gulp-csslint
+          to ensure that it was part of the stream process. Unfortunately,
+          it seems impossible to spy on the default method using require().
+          However, when moving to ES6 and the import statement there may be a possibility
+          that spying would be possible.
+         */
         var spy = sinon.spy(cssLint);
 
         validateCSSPipeline.validateCSS();
@@ -122,6 +129,9 @@ describe('pipeline-validate-css', function () {
         https://github.com/kenzanlabs/pipeline-validate-css/issues/28
       */
       xit('should utilize cssLint with the provided options object', function () {
+        /*
+          Same issue here with spying on gulp-csslint
+         */
         var spy = sinon.spy(cssLint);
 
         validateCSSPipeline.validateCSS();
