@@ -4,7 +4,6 @@
 var cssLint = require('gulp-csslint');
 var handyman = require('pipeline-handyman');
 var lazypipe = require('lazypipe');
-var formatter = require('./formatter');
 var fs = require('fs');
 var path = require('path');
 
@@ -21,7 +20,7 @@ function pipelineFactory (config) {
 
   stream = lazypipe()
     .pipe(cssLint, config)
-    .pipe(cssLint.formatter, formatter);
+    .pipe(cssLint.formatter, require('csslint-stylish'));
 
   return stream();
 }
