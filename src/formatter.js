@@ -7,9 +7,9 @@ module.exports = function cssLintFormatter (file) {
   var color = gulpUtil.colors;
 
   file.messages.forEach(function (result) {
-    var call = ' line ' + result.line + '   col ' + result.col + '   =>   ' + result.message;
+    var output = ' line ' + result.line + '   col ' + result.col + '   =>   ' + result.message;
 
-    handyman.log(color.gray(call));
+    handyman.log(color.gray(output));
   });
 
 };
