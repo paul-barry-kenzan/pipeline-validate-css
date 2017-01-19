@@ -5,6 +5,8 @@ var cssLint = require('gulp-csslint');
 var handyman = require('pipeline-handyman');
 var lazypipe = require('lazypipe');
 var formatter = require('./formatter');
+var fs = require('fs');
+var path = require('path');
 
 module.exports = {
   validateCSS: function (options) {
@@ -25,5 +27,26 @@ function pipelineFactory (config) {
 }
 
 function generatePipelineOptions (options) {
-  return handyman.mergeConfig({}, options);
+  var config;
+  var defaultConfig;
+  var providedConfig;
+
+  defaultConfig = fs.readFileSync(path.join(process.cwd(), '.csslintrc'), 'utf8');
+  defaultConfig = JSON.parse(defaultConfig.toString());
+
+  if (typeof options === 'object') {
+    config = handyman.mergeConfig(defaultConfig, options);
+
+  } else if (typeof options === 'string') {
+    providedConfig = fs.readFileSync(path.join(process.cwd(), options), 'utf8');
+    providedConfig = JSON.parse(providedConfig.toString());
+
+    config = handyman.mergeConfig(defaultConfig, providedConfig);
+
+  } else {
+    config = defaultConfig;
+
+  }
+
+  return config;
 }

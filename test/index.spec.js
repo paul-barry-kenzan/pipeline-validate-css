@@ -74,6 +74,13 @@ describe('pipeline-validate-css', function () {
     describe('validateCSS default usage', function () {
 
       xit('should utilize cssLint with no options', function () {
+        /*
+          The hope here was to spy on the default method of gulp-csslint
+          to ensure that it was part of the stream process. Unfortunately,
+          it seems impossible to spy on the default method using require().
+          However, when moving to ES6 and the import statement there may be a possibility
+          that spying would be possible.
+         */
         var spy = sinon.spy(cssLint);
 
         validateCSSPipeline.validateCSS();
@@ -99,9 +106,14 @@ describe('pipeline-validate-css', function () {
         validateCSSPipeline.validateCSS(customConfig);
 
         expect(spy).to.have.been.calledWith(sinon.match.object, customConfig);
+
+        handyman.mergeConfig.restore();
       });
 
       xit('should utilize cssLint with the provided options object', function () {
+        /*
+          Same issue here with spying on gulp-csslint
+         */
         var spy = sinon.spy(cssLint);
 
         validateCSSPipeline.validateCSS();
@@ -112,6 +124,17 @@ describe('pipeline-validate-css', function () {
     });
 
     describe('validateCSS provided a custom .csslintrc path', function () {
+
+      it('should merge the default config with the file at the provided path', function () {
+        var spy = sinon.spy(handyman, 'mergeConfig');
+        var path = './test/fixtures/.mockcsslintrc';
+
+        validateCSSPipeline.validateCSS(path);
+
+        expect(spy).to.have.been.calledWith(sinon.match.object, sinon.match.object);
+        expect(spy.getCall(0).args[0].important).to.be.true();
+        expect(spy.getCall(0).args[1].important).to.be.false();
+      });
 
     });
 
