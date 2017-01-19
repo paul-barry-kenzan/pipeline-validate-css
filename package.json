@@ -50,7 +50,6 @@
     "chai": "3.3.0",
     "dirty-chai": "1.2.2",
     "gulp": "3.9.1",
-    "gulp-util": "3.0.6",
     "isstream": "0.1.2",
     "pipeline-test-node": "1.0.1",
     "pipeline-validate-js": "1.0.0-rc4",
