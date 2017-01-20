@@ -2,43 +2,58 @@
 'use strict';
 
 var cssLint = require('gulp-csslint');
-var gulpFilter = require('gulp-filter');
-var gulpUtil = require('gulp-util');
 var handyman = require('pipeline-handyman');
 var lazypipe = require('lazypipe');
-
-var cssFilter = gulpFilter('*.css', { matchBase: true, restore: true });
+var formatter = require('./formatter');
+var fs = require('fs');
+var path = require('path');
 
 module.exports = {
-  validateCSS: function() {
-    return pipelineFactory();
+  validateCSS: function (options) {
+    var config = generatePipelineOptions(options);
+
+    return pipelineFactory(config);
   }
 };
 
-function pipelineFactory() {
+function pipelineFactory (config) {
   var stream;
 
-  handyman.log('Validating CSS files.');
   stream = lazypipe()
-    .pipe(function() {
-      return cssFilter;
-    })
-    .pipe(cssLint)
-    .pipe(cssLint.formatter, customFormatter)
-    .pipe(function() {
-      handyman.log('Restoring CSS Filter.');
-      return cssFilter.restore;
-    });
+    .pipe(cssLint, config)
+    .pipe(cssLint.formatter, formatter);
 
   return stream();
 }
 
-function customFormatter(file) {
-  var color = gulpUtil.colors;
+function generatePipelineOptions (options) {
+  var config;
+  var defaultConfig;
+  var providedConfig;
 
-  file.messages.forEach(function(result) {
-    var call = ' line ' + result.line + '   col ' + result.col + '   =>   ' + result.message;
+  defaultConfig = fs.readFileSync(path.join(process.cwd(), '.csslintrc'), 'utf8');
+  defaultConfig = JSON.parse(defaultConfig.toString());
 
-    handyman.log(color.gray(call));
-  });
+  if (typeof options === 'object') {
+    config = handyman.mergeConfig(defaultConfig, options);
+
+  } else if (typeof options === 'string') {
+
+    try {
+      providedConfig = fs.readFileSync(options, 'utf8');
+      providedConfig = JSON.parse(providedConfig.toString());
+
+      config = handyman.mergeConfig(defaultConfig, providedConfig);
+
+    } catch (ex) {
+      throw new Error('pipeline-validate-css: Provided path to .csslintrc failed. Please check the path.');
+
+    }
+
+  } else {
+    config = defaultConfig;
+
+  }
+
+  return config;
 }
