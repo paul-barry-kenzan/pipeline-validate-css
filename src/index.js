@@ -38,10 +38,17 @@ function generatePipelineOptions (options) {
     config = handyman.mergeConfig(defaultConfig, options);
 
   } else if (typeof options === 'string') {
-    providedConfig = fs.readFileSync(path.join(process.cwd(), options), 'utf8');
-    providedConfig = JSON.parse(providedConfig.toString());
 
-    config = handyman.mergeConfig(defaultConfig, providedConfig);
+    try {
+      providedConfig = fs.readFileSync(options, 'utf8');
+      providedConfig = JSON.parse(providedConfig.toString());
+
+      config = handyman.mergeConfig(defaultConfig, providedConfig);
+
+    } catch (ex) {
+      throw new Error('pipeline-validate-css: Provided path to .csslintrc failed. Please check the path.');
+
+    }
 
   } else {
     config = defaultConfig;

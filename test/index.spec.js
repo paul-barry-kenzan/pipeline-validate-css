@@ -129,6 +129,15 @@ describe('pipeline-validate-css', function () {
 
     describe('validateCSS provided a custom .csslintrc path', function () {
 
+      it('should throw an error when the provided file path can not be found', function () {
+        var path = './test/path/that/does/not/exist/.mockcsslintrc';
+        var fn = function () {
+          validateCSSPipeline.validateCSS(path);
+        };
+
+        expect(fn).to.throw();
+      });
+
       it('should merge the default config with the file at the provided path', function () {
         var spy = sinon.spy(handyman, 'mergeConfig');
         var path = './test/fixtures/.mockcsslintrc';
